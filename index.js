@@ -12,7 +12,7 @@ app.use(express.json());
 
 app.get('/weather', async(req, res) => {
     try{
-        const response = await axios.get(`https://api.tomorrow.io/v4/timelines?location=40.75872069597532,-73.98529171943665&fields=temperature&timesteps=1h&units=metric&apikey=${api}`);
+        const response = await axios.get(`https://api.tomorrow.io/v4/timelines?location=40.75872069597532,-73.98529171943665&fields=temperature,precipitationIntensity&apikey=${api}`);
     
     const weatherData = response.data.data.timelines[0].intervals[0].values;
     res.json(weatherData);
