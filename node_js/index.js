@@ -94,3 +94,11 @@ app.listen(port, () => {
     console.log(`Example app listening at http://localhost:${port}`);
     }
 );
+
+
+/*improvements to be made
+1. add a location variable
+2. add a time variable
+3. get real time weather data
+4. take the playlist and list the songs in the playlist
+*/
