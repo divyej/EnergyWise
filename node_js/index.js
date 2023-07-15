@@ -80,7 +80,10 @@ app.get('/playlist', async(req, res) => {
         console.log(playLists);
 
     }
-    
+    catch(error){
+        console.log(error);
+        res.status(500).send('Some error occured');
+    }
 })
 
 
