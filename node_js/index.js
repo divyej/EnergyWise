@@ -33,7 +33,7 @@ spotifyApi
 
 app.use(express.json());
 
-app.get('/weather', async(req, res) => {
+async function weather(){
     try{
         const response = await axios.get(`https://api.tomorrow.io/v4/timelines?location=40.75872069597532,-73.98529171943665&fields=temperature,precipitationIntensity,weatherCode&apikey=${api}`);
     
@@ -52,7 +52,7 @@ app.get('/weather', async(req, res) => {
         console.log(error);
         res.status(500).send('Some error occured');
     }
-})
+}
 ////////////////////////////////////weather code call/////////////////////////////////////
 
 function playList(weatherDescription){
