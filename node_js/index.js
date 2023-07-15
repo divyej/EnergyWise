@@ -45,7 +45,6 @@ async function weather(){
 
     console.log(temperature)
     console.log(weatherData);
-    res.json(weatherData);
     return weatherDescription;
     }
     catch(error){
