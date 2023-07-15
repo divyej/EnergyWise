@@ -18,7 +18,7 @@ const spotifyApi = new Spotify({
   clientId: SPOTIFY_CLIENT_ID,
   clientSecret: SPOTIFY_CLIENT_SECRET
 });
-
+//using spotify web api node where clienrCredentialsGrant is used to get the access token from the cliend side 
 spotifyApi
     .clientCredentialsGrant()
     .then(function(result) {
@@ -36,10 +36,12 @@ app.use(express.json());
 async function weather(){
     try{
         const response = await axios.get(`https://api.tomorrow.io/v4/timelines?location=40.75872069597532,-73.98529171943665&fields=temperature,precipitationIntensity,weatherCode&apikey=${api}`);
-    
+    //fields can be added or removed as per the requirement
     const weatherData = response.data.data.timelines[0].intervals[0].values;
     const temperature = weatherData.temperature;
+    //returns the weather code from here 
     const weatherCode=  weatherData.weatherCode;
+    //check the weather code and return the weather description
     const weatherDescription=weatherCodes[0][weatherCode];
     console.log(weatherDescription);
     console.log(temperature)
@@ -71,7 +73,9 @@ function playList(weatherDescription){
 ////////////////////////////////////We be calling the weather code/////////////////////////////////////
 app.get('/playlist', async(req, res) => {
     try{
+        //takes the description from the weather function and pushes it here 
         const weatherDescription= await weather();
+        //takes the weather description and returns the playlist url
         const playLists= playList(weatherDescription)
         //play the song playlist in this case return the plsytlist url
         res.json({playLists});
