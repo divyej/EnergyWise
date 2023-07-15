@@ -1,12 +1,32 @@
 const express = require('express');
 const axios = require('axios');
+const Spotify= require('spotify-web-api-node');
+const {SPOTIFY_CLIENT_ID, SPOTIFY_CLIENT_SECRET} = require('./config.js');
 
-require('dotenv').config();
 
-const app = express();
-const port = 3000;
+require('dotenv').config()
 
-const api=process.env.API;
+const app = express()
+const port = 5000
+
+const api=process.env.API
+
+const spotifyApi = new Spotify({
+  clientId: SPOTIFY_CLIENT_ID,
+  clientSecret: SPOTIFY_CLIENT_SECRET
+});
+
+spotifyApi
+    .clientCredentialsGrant()
+    .then(function(result) {
+        console.log('It worked! Your access token is: ' + result.body.access_token)
+    }).catch(function(err) {
+        console.log("Something went wrong when retrieving an access token",err)
+    });
+
+
+
+
 
 app.use(express.json());
 
