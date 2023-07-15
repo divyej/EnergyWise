@@ -46,6 +46,7 @@ app.get('/weather', async(req, res) => {
     console.log(temperature)
     console.log(weatherData);
     res.json(weatherData);
+    return weatherDescription;
     }
     catch(error){
         console.log(error);
@@ -54,7 +55,7 @@ app.get('/weather', async(req, res) => {
 })
 ////////////////////////////////////weather code call/////////////////////////////////////
 
-function playlist(weatherDescription){
+function playList(weatherDescription){
     if(weatherDescription.includes('Clear')||weatherDescription.includes('Sunny'))
     return playlists[0].sunny;
     else if(weatherDescription.includes('Rain')||weatherDescription.includes('Drizzle'))
@@ -70,7 +71,17 @@ function playlist(weatherDescription){
 
 
 ////////////////////////////////////We be calling the weather code/////////////////////////////////////
+app.get('/playlist', async(req, res) => {
+    try{
+        const weatherDescription= await weather();
+        const playLists= playList(weatherDescription)
+        //play the song playlist in this case return the plsytlist url
+        res.json(weatherData);
+        console.log(playLists);
 
+    }
+    
+})
 
 
 
