@@ -42,7 +42,6 @@ async function weather(){
     const weatherCode=  weatherData.weatherCode;
     const weatherDescription=weatherCodes[0][weatherCode];
     console.log(weatherDescription);
-
     console.log(temperature)
     console.log(weatherData);
     return weatherDescription;
@@ -75,7 +74,7 @@ app.get('/playlist', async(req, res) => {
         const weatherDescription= await weather();
         const playLists= playList(weatherDescription)
         //play the song playlist in this case return the plsytlist url
-        res.json(weatherData);
+        res.json({playLists});
         console.log(playLists);
 
     }
