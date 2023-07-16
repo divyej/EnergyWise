@@ -1,9 +1,7 @@
 package services
 
 import (
-	"encoding/json"
 	"fmt"
-	"io"
 	"net/http"
 	"smart_vibes/models"
 	"smart_vibes/utils"
@@ -35,7 +33,7 @@ func GetWeatherForecast() models.WeatherForecast {
 
 	var weatherForecast models.WeatherForecast
 
-	err = utils.ParseJson(response.Body, weatherForecast)
+	err = utils.ParseJson(response.Body, &weatherForecast)
 
 	if err != nil {
 		fmt.Print("Error desirialization of WeatherForecast")
