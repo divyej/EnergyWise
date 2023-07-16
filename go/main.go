@@ -8,4 +8,7 @@ import (
 func main() {
 	weatherForecast := services.GetWeatherForecast()
 	fmt.Print(weatherForecast)
+
+	realtimeWeather := services.GetRealtimeWeather()
+	fmt.Print(realtimeWeather)
 }

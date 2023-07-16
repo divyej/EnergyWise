@@ -1,6 +1,8 @@
 package models
 
 type Location struct {
-	lat float64
-	lon float64
+	Lat  float32
+	Lon  float32
+	Name string
+	Type string
 }

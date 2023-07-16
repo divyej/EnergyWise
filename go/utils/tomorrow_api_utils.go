@@ -7,9 +7,11 @@ import (
 
 const BaseUrl string = "https://api.tomorrow.io/v4/"
 
-func EncodeParameters(path string, parameters map[string]any) string {
+// EncodeTomorrowUrl takes path or the route with parameters as map which then gets converted to a single url
+// combined with base url of Tomorrow.io api
+func EncodeTomorrowUrl(path string, parameters map[string]any) string {
 
-	var parametersAsString = ""
+	var parametersAsString = "?"
 	for k, v := range parameters {
 		valueType := reflect.TypeOf(v).Kind()
 
