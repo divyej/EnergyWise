@@ -11,4 +11,7 @@ func main() {
 
 	realtimeWeather := services.GetRealtimeWeather()
 	fmt.Print(realtimeWeather)
+
+	weatherHistory := services.GetWeatherHistory()
+	fmt.Print(weatherHistory)
 }

@@ -11,14 +11,14 @@ type RealtimeWeather struct {
 }
 
 // Returns Timelines with Minutely nil
-type WeatherRecentHistory struct {
+type WeatherHistory struct {
 	Timelines Timelines
 	Location  Location
 }
 
 // Timelines (Minutely, Hourly, Daily) for Weather related data. 
 // Each data has its own fields, sometimes common, sometimes unique.
-// Minutely is nil for WeatherRecentHistory
+// Minutely is nil for WeatherHistory
 type Timelines struct {
 	Minutely []Minutely
 	Hourly   []Hourly
