@@ -15,8 +15,8 @@ func GetWeatherForecast() models.WeatherForecast {
 	params :=
 		map[string]any{
 			"location": "arekere%20mico%20layout",
-			"timesteps": []string{
-				"1m", "1h", "1d",
+			"timesteps": []models.Timestep{
+				models.Minutely, models.Hourly, models.Hourly,
 			},
 			"units": "metric",
 		}
@@ -80,8 +80,8 @@ func GetWeatherHistory() models.WeatherHistory {
 	params :=
 		map[string]any{
 			"location": "arekere%20mico%20layout",
-			"timesteps": []string{
-				"1m", "1h", "1d",
+			"timesteps": []models.Timestep{
+				models.Minutely, models.Hourly, models.Hourly,
 			},
 			"units": "metric",
 		}

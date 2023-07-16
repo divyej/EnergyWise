@@ -6,26 +6,26 @@ type WeatherForecast struct {
 }
 
 type RealtimeWeather struct {
-	Data     Minutely
+	Data     MinutelyWeatherData
 	Location Location
 }
 
-// Returns Timelines with Minutely nil
+// Returns Timelines with MinutelyWeatherData nil
 type WeatherHistory struct {
 	Timelines Timelines
 	Location  Location
 }
 
-// Timelines (Minutely, Hourly, Daily) for Weather related data. 
+// Timelines (MinutelyWeatherData, HourlyWeatherData, DailyWeatherData) for Weather related data. 
 // Each data has its own fields, sometimes common, sometimes unique.
 // Minutely is nil for WeatherHistory
 type Timelines struct {
-	Minutely []Minutely
-	Hourly   []Hourly
-	Daily    []Daily
+	Minutely []MinutelyWeatherData
+	Hourly   []HourlyWeatherData
+	Daily    []DailyWeatherData
 }
 
-type Minutely struct {
+type MinutelyWeatherData struct {
 	Time   string
 	Values MinutelyData
 }
@@ -53,7 +53,7 @@ type MinutelyData struct {
 	WindSpeed                float64
 }
 
-type Hourly struct {
+type HourlyWeatherData struct {
 	Time   string
 	Values HourlyData
 }
@@ -91,7 +91,7 @@ type HourlyData struct {
 	WindSpeed                float64
 }
 
-type Daily struct {
+type DailyWeatherData struct {
 	Time   string
 	Values DailyData
 }
