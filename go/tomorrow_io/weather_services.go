@@ -1,26 +1,24 @@
-package services
+package tomorrow_io
 
 import (
 	"fmt"
 	"net/http"
-	"smart_vibes/models"
-	"smart_vibes/utils"
 )
 
 // GetWeatherForecast using the weather forecast API fetches up-to-date weather information for the specified location,
 // including minute-by-minute forecasts for the next hour, hourly forecasts for the next 120 hours, and daily forecasts for the next 5 days.
 //
 // Docs: https://docs.tomorrow.io/reference/weather-forecast
-func GetWeatherForecast() models.WeatherForecast {
+func GetWeatherForecast() WeatherForecast {
 	params :=
 		map[string]any{
 			"location": "arekere%20mico%20layout",
-			"timesteps": []models.Timestep{
-				models.Minutely, models.Hourly, models.Hourly,
+			"timesteps": []Timestep{
+				Minutely, Hourly, Hourly,
 			},
 			"units": "metric",
 		}
-	url := utils.EncodeTomorrowUrl("weather/forecast", params)
+	url := encodeTomorrowUrl("weather/forecast", params)
 
 	response, err := http.Get(url)
 
@@ -29,9 +27,9 @@ func GetWeatherForecast() models.WeatherForecast {
 	}
 	defer response.Body.Close()
 
-	var weatherForecast models.WeatherForecast
+	var weatherForecast WeatherForecast
 
-	err = utils.ParseJson(response.Body, &weatherForecast)
+	err = ParseJson(response.Body, &weatherForecast)
 
 	if err != nil {
 		fmt.Print("Error desirialization of WeatherForecast")
@@ -44,14 +42,14 @@ func GetWeatherForecast() models.WeatherForecast {
 // information for the specified location in minute-by-minute temporal resolution.
 //
 // Docs: https://docs.tomorrow.io/reference/realtime-weather
-func GetRealtimeWeather() models.RealtimeWeather {
+func GetRealtimeWeather() RealtimeWeather {
 
 	params :=
 		map[string]any{
 			"location": "arekere%20mico%20layout",
 			"units":    "metric",
 		}
-	url := utils.EncodeTomorrowUrl("weather/realtime", params)
+	url := encodeTomorrowUrl("weather/realtime", params)
 
 	response, err := http.Get(url)
 
@@ -60,9 +58,9 @@ func GetRealtimeWeather() models.RealtimeWeather {
 	}
 	defer response.Body.Close()
 
-	var realtimeWeather models.RealtimeWeather
+	var realtimeWeather RealtimeWeather
 
-	err = utils.ParseJson(response.Body, &realtimeWeather)
+	err = ParseJson(response.Body, &realtimeWeather)
 
 	if err != nil {
 		fmt.Print("Error desirialization of RealtimeWeather")
@@ -75,18 +73,18 @@ func GetRealtimeWeather() models.RealtimeWeather {
 // including hourly history for the last 24 hours, and daily history for the last day.
 //
 // Docs: https://docs.tomorrow.io/reference/weather-recent-history
-func GetWeatherHistory() models.WeatherHistory {
+func GetWeatherHistory() WeatherHistory {
 
 	params :=
 		map[string]any{
 			"location": "arekere%20mico%20layout",
-			"timesteps": []models.Timestep{
-				models.Minutely, models.Hourly, models.Hourly,
+			"timesteps": []Timestep{
+				Minutely, Hourly, Hourly,
 			},
 			"units": "metric",
 		}
 
-	url := utils.EncodeTomorrowUrl("weather/history/recent", params)
+	url := encodeTomorrowUrl("weather/history/recent", params)
 
 	response, err := http.Get(url)
 
@@ -95,9 +93,9 @@ func GetWeatherHistory() models.WeatherHistory {
 	}
 	defer response.Body.Close()
 
-	var weatherHistory models.WeatherHistory
+	var weatherHistory WeatherHistory
 
-	err = utils.ParseJson(response.Body, &weatherHistory)
+	err = ParseJson(response.Body, &weatherHistory)
 
 	if err != nil {
 		fmt.Print("Error desirialization of WeatherHistory")

@@ -1,4 +1,4 @@
-package models
+package tomorrow_io
 
 // Timstep is the param for Tomorrow.io
 // 

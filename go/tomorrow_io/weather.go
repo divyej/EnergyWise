@@ -1,4 +1,4 @@
-package models
+package tomorrow_io
 
 type WeatherForecast struct {
 	Timelines Timelines

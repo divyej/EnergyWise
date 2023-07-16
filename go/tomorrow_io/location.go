@@ -1,4 +1,4 @@
-package models
+package tomorrow_io
 
 type Location struct {
 	Lat  float32

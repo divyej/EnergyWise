@@ -1,4 +1,4 @@
-package utils
+package tomorrow_io
 
 import (
 	"encoding/json"

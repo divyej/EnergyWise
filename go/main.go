@@ -2,16 +2,16 @@ package main
 
 import (
 	"fmt"
-	"smart_vibes/services"
+	"smart_vibes/tomorrow_io"
 )
 
 func main() {
-	weatherForecast := services.GetWeatherForecast()
+	weatherForecast := tomorrow_io.GetWeatherForecast()
 	fmt.Print(weatherForecast)
 
-	realtimeWeather := services.GetRealtimeWeather()
+	realtimeWeather := tomorrow_io.GetRealtimeWeather()
 	fmt.Print(realtimeWeather)
 
-	weatherHistory := services.GetWeatherHistory()
+	weatherHistory := tomorrow_io.GetWeatherHistory()
 	fmt.Print(weatherHistory)
 }
