@@ -21,17 +21,22 @@ const spotifyApi = new Spotify({
 
 
 //using spotify web api node where clienrCredentialsGrant is used to get the access token from the cliend side 
-spotifyApi
-    .clientCredentialsGrant()
-    .then(function(result) {
-        console.log('It worked! Your access token is: ' + result.body.access_token)
-    }).catch(function(err) {
-        console.log("Something went wrong when retrieving an access token",err)
-    });
-
+function getAccessToken() {
+    return spotifyApi.clientCredentialsGrant()
+      .then((data) => {
+        const accessToken = data.body.access_token;
+        spotifyApi.setAccessToken(accessToken);
+        console.log('Authenticated with Spotify API'+accessToken);
+        return accessToken; // Return the access token
+      })
+      .catch((error) => {
+        console.error('Error authenticating with Spotify API:', error);
+        throw new Error('Failed to authenticate with Spotify API');
+      });
+  }
 /////////////////////////////tomoorrow api/////////////////////////////////////
 
-
+getAccessToken();
 
 app.use(express.json());
 
@@ -80,9 +85,10 @@ function getPlaylist(playListId){
             Authorization: `Bearer ${spotifyApi.getAccessToken()}`
         }
     }
+   
     return axios.get(options.url,{headers:options.headers})
     .then(response=>{
-        console.log(response.data);
+        response.data;
     }
     )
     .catch(error=>{
@@ -101,8 +107,10 @@ app.get('/playlist', async(req, res) => {
         //takes the weather description and returns the playlist url
         const playLists= playList(weatherDescription)
         //play the song playlist in this case return the plsytlist url
-        res.json({playLists});
-        console.log(playLists);
+        const playListId=await getPlaylist("37i9dQZF1E375JvofLwVsp");
+        //////////////////////////////////////////////////////////
+        res.json({playListId});
+        console.log(playListId);
 
     }
     catch(error){
