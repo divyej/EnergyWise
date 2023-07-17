@@ -47,6 +47,7 @@ async function weather(location){
     const weatherDescription=weatherCodes[0][weatherCode];
     console.log(weatherDescription);
     console.log(temperature)
+    console.log(location)
     console.log(weatherData);
     return weatherDescription;
     }
@@ -102,7 +103,7 @@ app.listen(port, () => {
 
 
 /*improvements to be made
-1. add a location variable
+1. add a location variable----- done
 2. add a time variable
 3. get real time weather data
 4. take the playlist and list the songs in the playlist
