@@ -72,7 +72,26 @@ function playList(weatherDescription){
 
 }
 
+//////////////////////////////////to get a playlist details via id ////////////////////////////////////
+function getPlaylist(playListId){
+    const options={
+        url:`https://api.spotify.com/v1/playlists/${playListId}`,
+        headers:{
+            Authorization: `Bearer ${spotifyApi.getAccessToken()}`
+        }
+    }
+    return axios.get(options.url,{headers:options.headers})
+    .then(response=>{
+        console.log(response.data);
+    }
+    )
+    .catch(error=>{
+        console.log(error);
+    }
+    )
 
+
+}
 ////////////////////////////////////We be calling the weather code/////////////////////////////////////
 app.get('/playlist', async(req, res) => {
     const {location}=req.query;
@@ -106,5 +125,5 @@ app.listen(port, () => {
 1. add a location variable----- done
 2. add a time variable
 3. get real time weather data
-4. take the playlist and list the songs in the playlist
+4. take the playlist and list the songs in the playlist ---------- done
 */
