@@ -25,16 +25,27 @@ async function getAccessToken() {
     try {
         const data = await spotifyApi.clientCredentialsGrant();
         const accessToken = data.body.access_token;
-        spotifyApi.setAccessToken(accessToken);
         console.log(accessToken);
-        return accessToken;
+        spotifyApi.setAccessToken(accessToken);
+        return accessToken;        
+  
     } catch (error) {
         console.error('Error authenticating with Spotify API:', error);
         throw new Error('Failed to authenticate with Spotify API');
     }
   }
+
+  getAccessToken()
+  .then(token => {
+     console.log(token)
+     getPlaylist('37i9dQZF1DX1gRalH1mWrP',token);
+  })
+  .catch(error => {
+      console.error(error);
+  });
+
 /////////////////////////////tomoorrow api/////////////////////////////////////
-getAccessToken();
+
 
 
 app.use(express.json());
@@ -77,9 +88,7 @@ function playList(weatherDescription){
 }
 
 //////////////////////////////////to get a playlist details via id ////////////////////////////////////
-function getPlaylist(playListId){
-    const token = getAccessToken();
-    console.log(token);
+function getPlaylist(playListId,token){
     const options={
         url:`https://api.spotify.com/v1/playlists/${playListId}`,
         headers:{
@@ -90,6 +99,7 @@ function getPlaylist(playListId){
     return axios.get(options.url,{headers:options.headers})
     .then(response=>{
         response.data;
+        console.log(response.data);
     }
     )
     .catch(error=>{
@@ -109,8 +119,9 @@ app.get('/playlist', async(req, res) => {
         const weatherDescription= await weather(location);
         //takes the weather description and returns the playlist url
         const playLists= playList(weatherDescription)
+         
         //play the song playlist in this case return the plsytlist url
-        const playListId=await getPlaylist("37i9dQZF1E375JvofLwVsp");
+        const playListId=await getPlaylist(playLists.split('/')[4]);
         //////////////////////////////////////////////////////////
         res.json({playListId});
         console.log(playListId);
