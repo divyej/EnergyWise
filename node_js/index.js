@@ -99,7 +99,9 @@ function getPlaylist(playListId,token){
     return axios.get(options.url,{headers:options.headers})
     .then(response=>{
         response.data;
-        console.log(response.data);
+        //console.log(response.data);
+        const items=response.data.tracks.items;
+        console.log(items);
     }
     )
     .catch(error=>{
@@ -146,6 +148,6 @@ app.listen(port, () => {
 /*improvements to be made
 1. add a location variable----- done
 2. add a time variable
-3. get real time weather data
+3. get real time weather data-----------done
 4. take the playlist and list the songs in the playlist ---------- done
 */
