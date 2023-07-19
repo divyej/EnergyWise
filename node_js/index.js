@@ -5,7 +5,7 @@ const {SPOTIFY_CLIENT_ID, SPOTIFY_CLIENT_SECRET,API} = require('./config.js');
 const weatherCodes=require('./models/weatherCodes.js');
 const playlists=require('./models/playList.js');
 
-require('dotenv').config()
+
 
 const app = express()
 const port = 5000
